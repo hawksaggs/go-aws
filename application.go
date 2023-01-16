@@ -11,10 +11,10 @@ import (
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "3000"
+		port = "5000"
 	}
 
-	f, _ := os.Create("./golang-server.log")
+	f, _ := os.Create("/var/log/golang/golang-server.log")
 	defer f.Close()
 	log.SetOutput(f)
 
