@@ -11,10 +11,10 @@ import (
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "5000"
+		port = "3000"
 	}
 
-	f, _ := os.Create("/var/log/golang/golang-server.log")
+	f, _ := os.Create("./golang-server.log")
 	defer f.Close()
 	log.SetOutput(f)
 
@@ -22,11 +22,11 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "POST" {
 			if buf, err := ioutil.ReadAll(r.Body); err == nil {
-				log.Printf("Received message: %s\n", string(buf))
+				log.Printf("Received message: %s\n\n", string(buf))
 			}
 		} else {
 			hello.SayHello()
-			log.Printf("Serving %s to %s...\n", indexPage, r.RemoteAddr)
+			log.Println("Serving %s to %s...\n", indexPage, r.RemoteAddr)
 			http.ServeFile(w, r, indexPage)
 		}
 	})
@@ -38,5 +38,5 @@ func main() {
 	})
 
 	log.Printf("Listening on port %s\n\n", port)
-	http.ListenAndServe(":"+port, nil)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

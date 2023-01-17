@@ -1,7 +1,7 @@
 GET http://localhost:{{port}}
 
 ###
-POST http://localhost:5000
+POST http://localhost:{{port}}
 Content-Type: application/json
 
 {
