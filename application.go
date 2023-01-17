@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/hawksaggs/hello"
+	"github.com/hawksaggs/golang-aws/hello"
 	"io/ioutil"
 	"log"
 	"net/http"
